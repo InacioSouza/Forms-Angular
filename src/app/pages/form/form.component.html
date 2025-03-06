@@ -1,0 +1,116 @@
+<div class="div-form">
+    <h1>Formulário Não reativo Angular</h1>
+
+    <main>
+        <form #formCadastro="ngForm">
+
+            <div class="agrupamento">
+
+                <h2>Informações pessoais</h2>
+
+                <div class="entrada">
+                    <label for="nome">Nome<small>*</small></label>
+                    <input #nome="ngModel" [(ngModel)]="dadosForm.nome" type="text" name="nome" id="nome" required
+                        minlength="3" [class.entrada-invalida]="!nome.valid && nome.touched">
+                    <span *ngIf="!nome.valid && nome.touched">O nome não pode ser vazio ou inferior a 3
+                        caracteres!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="sobrenome">Sobrenome<small>*</small></label>
+                    <input #sobrenome="ngModel" [(ngModel)]="dadosForm.sobrenome" type="text" name="sobrenome"
+                        id="sobrenome" required [minlength]="3"
+                        [class.entrada-invalida]="!sobrenome.valid && sobrenome.touched">
+
+                    <span *ngIf="!sobrenome.valid && sobrenome.touched">O sobrenome não pode ser vazio ou inferior a 3
+                        caracteres!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="email">Email<small>*</small></label>
+                    <input #email="ngModel" [(ngModel)]="dadosForm.email" type="email" name="email" id="email" required
+                        email [class.entrada-invalida]="!email.valid && email.touched">
+                    <span *ngIf="!email.valid && email.touched">Email vazio ou inválido!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="whatsapp">Whatsapp<small>*</small></label>
+                    <input #whatsapp="ngModel" [(ngModel)]="dadosForm.whatsapp" type="whatsapp" name="whatsapp"
+                        id="whatsapp" required pattern="[0-9]+$"
+                        [class.entrada-invalida]="!whatsapp.valid && whatsapp.touched">
+                    <span *ngIf="!whatsapp.valid && whatsapp.touched">O campo não pode ser vazio ou conter caracteres
+                        diferentes de números!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="estadoCivil">Estado civil<small>*</small></label>
+                    <select #estadoCivil="ngModel" name="estadoCivil" id="estadoCivil"
+                        [(ngModel)]="dadosForm.estadoCivil" required
+                        [class.entrada-invalida]="!estadoCivil.valid && estadoCivil.touched">
+                        <option value="solteiro">Solteiro</option>
+                        <option value="casado">Casado</option>
+                        <option value="divorciado">Divorciado</option>
+                        <option value="viuvo">Viúvo</option>
+                    </select>
+
+                    <span *ngIf="!estadoCivil.valid && estadoCivil.touched">Escolha um estado civil!</span>
+                </div>
+            </div>
+
+            <div class="endereco agrupamento">
+
+                <h2>Endereço</h2>
+
+                <div class="entrada">
+                    <label for="cep">CEP<small>*</small></label>
+                    <input #cep="ngModel" [(ngModel)]="dadosForm.endereco.cep" name="cep" id="cep" required
+                        [class.entrada-invalida]="!cep.valid && cep.touched">
+                    <span *ngIf="!cep.valid && cep.touched">CEP vazio ou inválido!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="estado">Estado<small>*</small></label>
+                    <input #estado="ngModel" [(ngModel)]="dadosForm.endereco.estado" name="estado" id="estado" required
+                        [class.entrada-invalida]="!estado.valid && estado.touched">
+                    <span *ngIf="!estado.valid && estado.touched">O campo não pode estar vazio!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="cidade">Cidade<small>*</small></label>
+                    <input #cidade="ngModel" [(ngModel)]="dadosForm.endereco.cidade" name="cidade" id="cidade" required
+                        [class.entrada-invalida]="!cidade.valid && cidade.touched">
+                    <span *ngIf="!cidade.valid && cidade.touched">O campo não pode estar vazio!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="bairro">Bairro<small>*</small></label>
+                    <input #bairro="ngModel" [(ngModel)]="dadosForm.endereco.bairro" name="bairro" id="bairro" required
+                        [class.entrada-invalida]="!bairro.valid && bairro.touched">
+                    <span *ngIf="!bairro.valid && bairro.touched">O campo não pode estar vazio!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="rua">Rua<small>*</small></label>
+                    <input #rua="ngModel" [(ngModel)]="dadosForm.endereco.rua" name="rua" id="rua" required
+                        [class.entrada-invalida]="!rua.valid && rua.touched">
+                    <span *ngIf="!rua.valid && rua.touched">O campo não pode estar vazio!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="numero">Número<small>*</small></label>
+                    <input #numero="ngModel" [(ngModel)]="dadosForm.endereco.numero" name="numero" id="numero" required
+                        [class.entrada-invalida]="!numero.valid && numero.touched">
+                    <span *ngIf="!numero.valid && numero.touched">O campo não pode estar vazio!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="complemento">Complemento</label>
+                    <input [(ngModel)]="dadosForm.endereco.complemento" name="complemento" id="complemento"
+                        [class.entrada-invalida]="">
+                </div>
+            </div>
+        </form>
+
+        <button (click)="cadastrar()" [disabled]="!formCadastro.valid">Cadastrar</button>
+    </main>
+</div>
