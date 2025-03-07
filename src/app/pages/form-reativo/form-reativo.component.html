@@ -1,0 +1,120 @@
+<div class="div-form">
+    <h1>Formulário reativo Angular</h1>
+
+    <main>
+        <form [formGroup]="formReativo">
+
+            <div class="agrupamento">
+
+                <h2>Informações pessoais</h2>
+
+                <div class="entrada">
+                    <label for="nome">Nome<small>*</small></label>
+                    <input formControlName="nome" type="text" name="nome" id="nome"
+                        [class.entrada-invalida]="isInvalid('nome')">
+                    <span *ngIf="isInvalid('nome')">O
+                        nome não pode ser vazio ou inferior a 3
+                        caracteres!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="sobrenome">Sobrenome<small>*</small></label>
+                    <input formControlName="sobrenome" type="text" name="sobrenome" id="sobrenome"
+                        [class.entrada-invalida]="isInvalid('sobrenome')">
+
+                    <span *ngIf="isInvalid('sobrenome')">O
+                        sobrenome não pode ser vazio ou inferior a 3
+                        caracteres!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="email">Email<small>*</small></label>
+                    <input formControlName="email" type="email" name="email" id="email"
+                        [class.entrada-invalida]="isInvalid('email')">
+                    <span *ngIf="isInvalid('email')">Email vazio ou
+                        inválido!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="whatsapp">Whatsapp<small>*</small></label>
+                    <input formControlName="whatsapp" type="whatsapp" name="whatsapp" id="whatsapp"
+                        [class.entrada-invalida]="isInvalid('whatsapp')">
+                    <span *ngIf="!formReativo.get('whatsapp')?.valid && formReativo.get('whatsapp')?.touched">O campo
+                        não pode ser vazio ou conter caracteres
+                        diferentes de números!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="estadoCivil">Estado civil<small>*</small></label>
+                    <select formControlName="estadoCivil" name="estadoCivil" id="estadoCivil"
+                        [class.entrada-invalida]="isInvalid('estadoCivil')">
+                        <option value="solteiro">Solteiro</option>
+                        <option value="casado">Casado</option>
+                        <option value="divorciado">Divorciado</option>
+                        <option value="viuvo">Viúvo</option>
+                    </select>
+
+                    <span *ngIf="isInvalid('estadoCivil')">Escolha
+                        um estado civil!</span>
+                </div>
+            </div>
+
+            <div formGroupName="endereco" class="endereco agrupamento">
+
+                <h2>Endereço</h2>
+
+                <!--A validação não está funcionando!-->
+                <div class="entrada">
+                    <label for="cep">CEP<small>*</small></label>
+                    <input formControlName="cep" name="cep" id="cep"
+                        [class.entrada-invalida]="isInvalid('endereco.cep')">
+                    <span *ngIf="isInvalid('endereco.cep')">CEP
+                        vazio ou
+                        inválido!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="estado">Estado<small>*</small></label>
+                    <input formControlName="estado" name="estado" id='estado'
+                        [class.entrada-invalida]="isInvalid('endereco.estado')">
+                    <span *ngIf="isInvalid('endereco.estado')">Preencha o campo!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="cidade">Cidade<small>*</small></label>
+                    <input formControlName="cidade" name="cidade" id="cidade"
+                        [class.entrada-invalida]="isInvalid('endereco.cidade')">
+                    <span *ngIf="isInvalid('endereco.cidade')">Preencha o campo!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="bairro">Bairro<small>*</small></label>
+                    <input formControlName="bairro" name="bairro" id="bairro"
+                        [class.entrada-invalida]="isInvalid('endereco.bairro')">
+                    <span *ngIf="isInvalid('endereco.bairro')">Preencha o campo!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="rua">Rua<small>*</small></label>
+                    <input formControlName="rua" name="rua" id="rua"
+                        [class.entrada-invalida]="isInvalid('endereco.rua')">
+                    <span *ngIf="isInvalid('endereco.rua')">Preencha o campo!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="numero">Número<small>*</small></label>
+                    <input formControlName="numero" name="numero" id="numero"
+                        [class.entrada-invalida]="isInvalid('endereco.numero')">
+                    <span *ngIf="isInvalid('endereco.numero')">Preencha o campo!</span>
+                </div>
+
+                <div class="entrada">
+                    <label for="complemento">Complemento<small>*</small></label>
+                    <input formControlName="complemento" name="complemento" id="complemento">
+                </div>
+            </div>
+        </form>
+
+        <button (click)="cadastrar()" [disabled]="!formReativo.valid">Cadastrar</button>
+    </main>
+</div>
